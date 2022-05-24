@@ -5,10 +5,10 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 public class AbstractPage {
-    WebDriver driver;
-    static final Logger logger = LogManager.getLogger();
+    public WebDriver driver;
+    public static final Logger logger = LogManager.getLogger();
     public final static String BASE_URL = "https://intercity.by";
-    public final static String RESULT_SEARCH_URL = BASE_URL+"/tours/country/egypt/";
+    public final static String RESULT_SEARCH_URL = BASE_URL + "/tours/country/egypt/";
 
 
     public AbstractPage(WebDriver driver) {

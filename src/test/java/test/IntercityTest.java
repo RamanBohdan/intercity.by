@@ -7,18 +7,23 @@ import pageobject.ResultSearchTourPage;
 
 
 public class IntercityTest extends AbstractTest {
-    String nameResort = "Египет, Хургада";
+    String departureCity = "Минск";
+    String nameCountry = "Египет";
+    String nameResort = "Хургада";
+    String nameResortInResult = "Египет, Хургада";
+    String nameResortInResultIsAll = "Египет, Хургада";
 
     @Test
     public void testSearchPlaceOfEgypt() {
         ResultSearchTourPage searchTourPage = new IntercityPage(driver)
                 .openHomePage()
-                .choosePlaceOfArrivalResort()
+                .chooseDepartureCity(departureCity)
+                .choosePlaceOfArrival(nameCountry, nameResort)
                 .chooseDateOfDeparture()
                 .choosePeopleOfDeparture()
                 .openResultSearchTourPage();
 
-     // Assert.assertTrue(searchTourPage.isSingleResortContainsName(nameResort));
-      Assert.assertTrue(searchTourPage.isAllResortsContainsName(nameResort));
+        Assert.assertTrue(searchTourPage.isSingleResortContainsName(nameResortInResult));
+        Assert.assertTrue(searchTourPage.isAllResortsContainsName(nameResortInResultIsAll));
     }
 }

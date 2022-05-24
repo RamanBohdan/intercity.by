@@ -5,14 +5,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+
 public class IntercityPage extends BasePage {
 
+    @FindBy(xpath = "(//span[@class='ps-form__trigger-title ps-form__trigger-title--full'])[1]")
+    private WebElement buttonDepartureCity;
     @FindBy(xpath = "(//span[@class='ps-form__trigger-title ps-form__trigger-title--full'])[2]")
     private WebElement buttonPlaceOfArrival;
-    @FindBy(xpath = "(//span[contains(@class,'checkbox-row__text')])[13]")
-    private WebElement selectPlaceOfArrival;
     @FindBy(xpath = "(//div[@class='ps-form__dd-footer-action'])[1]")
-    private WebElement inputPlaceOfArrivalComplete;
+    private WebElement buttonPlaceOfArrivalComplete;
     @FindBy(xpath = "(//button[@class='ps-form__trigger ps-form__trigger--filled'])[3]")
     private WebElement buttonDateOfDeparture;
     @FindBy(xpath = "//table[@class='datepicker__calendar']//td[@class=' date-active date-highlight']")
@@ -27,18 +29,35 @@ public class IntercityPage extends BasePage {
     private WebElement buttonPeopleOfArrivalComplete;
     @FindBy(xpath = "//div[@class='ps-form__row']//button[@type='submit']")
     private WebElement buttonSearch;
+    @FindBy(xpath = "(//span[@class='checkbox-row__text'])[13]")
+    private WebElement selectPlaceOfArrival;
 
     public IntercityPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
- /*   public HomePage choosePlaceOfArrival(String nameCountry) {
+    public IntercityPage chooseDepartureCity(String departureCity) {
+        buttonDepartureCity.click();
+        String selectDepartureCity = "//div[@class='ps-filter-item__select-list']";
+        List<WebElement> cityOfDeparture = driver.findElements(By.xpath(selectDepartureCity));
+        for (WebElement city : cityOfDeparture) {
+            if (departureCity.equals(city.getText().trim())) {
+                logger.info("Departure city: " + city.getText());
+                city.click();
+                break;
+            }
+        }
+        return this;
+    }
+
+   public IntercityPage choosePlaceOfArrival(String nameCountry, String nameResort) {
         buttonPlaceOfArrival.click();
-        List<WebElement> countries = driver.findElements(By.xpath(selectPlaceOfArrival));
-        for (WebElement country : countries) {
-            if (nameCountry.equals(country.getText().trim())) {
-                logger.info("Country: " + country.getText());
+       String selectPlaceOfArrival = "//span[@class='checkbox-row__text']";
+        List<WebElement> countriesAndResorts = driver.findElements(By.xpath(selectPlaceOfArrival));
+        for (WebElement country : countriesAndResorts) {
+            if (nameCountry.equals(country.getText().trim()) & nameResort.equals(country.getText().trim())) {
+                logger.info("Country and Resort: " + country.getText());
                 country.click();
                 break;
             }
@@ -46,26 +65,32 @@ public class IntercityPage extends BasePage {
         return this;
     }
 
-    public HomePage choosePlaceOfArrivalResort(String nameResort) {
+   public IntercityPage choosePlaceOfArrivalResort(String nameResort) {
         buttonPlaceOfArrival.click();
-        List<WebElement> resorts = driver.findElements(By.xpath(selectPlaceOfArrivalCheckResort));
+       String selectPlaceOfArrival = "//span[@class='checkbox-row__text']";
+        List<WebElement> resorts = driver.findElements(By.xpath(selectPlaceOfArrival));
         for (WebElement resort : resorts) {
             if (nameResort.equals(resort.getText().trim())) {
-                logger.info("resort: " + resort.getText());
+                logger.info("Resort: " + resort.getText());
                 resort.click();
                 break;
             }
         }
         return this;
-    }*/
-
-    public IntercityPage choosePlaceOfArrivalResort() {
-        buttonPlaceOfArrival.click();
-        selectPlaceOfArrival.click();
-        inputPlaceOfArrivalComplete.click();
-        return this;
     }
 
+  /* public IntercityPage fillFormChooseCountryAndResort(String nameCountry, String nameResort){
+       choosePlaceOfArrival(nameCountry);
+       choosePlaceOfArrivalResort(nameResort);
+       return this;
+   }*/
+
+  /* public IntercityPage choosePlaceOfArrivalResort() {
+       buttonPlaceOfArrival.click();
+       selectPlaceOfArrivalFirst.click();
+       buttonPlaceOfArrivalComplete.click();
+       return this;
+   }*/
 
     public IntercityPage chooseDateOfDeparture() {
         buttonDateOfDeparture.click();
