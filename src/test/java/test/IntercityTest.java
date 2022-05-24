@@ -18,7 +18,7 @@ public class IntercityTest extends AbstractTest {
                 .choosePeopleOfDeparture()
                 .openResultSearchTourPage();
 
-  //      Assert.assertTrue(searchTourPage.isSingleResortContainsName(nameResort));
-       Assert.assertTrue(searchTourPage.isAllResortsContainsName(nameResort));
+     // Assert.assertTrue(searchTourPage.isSingleResortContainsName(nameResort));
+      Assert.assertTrue(searchTourPage.isAllResortsContainsName(nameResort));
     }
 }

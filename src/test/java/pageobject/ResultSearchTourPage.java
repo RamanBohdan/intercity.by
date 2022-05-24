@@ -27,11 +27,13 @@ public class ResultSearchTourPage extends BasePage {
 
     public boolean isSingleResortContainsName(String nameResort) {
         List<String> resultSearchResorts = getResultSearchResorts();
-        return resultSearchResorts.stream().anyMatch(resort->resort.contains(nameResort));
+        logger.info(resultSearchResorts.toString());
+        return resultSearchResorts.stream().anyMatch(nameResort::equals);
     }
 
     public boolean isAllResortsContainsName(String nameResort){
         List<String> resultSearchResorts=getResultSearchResorts();
+        logger.info(resultSearchResorts.toString());
         return resultSearchResorts.stream().allMatch(resort->resort.contains(nameResort));
     }
 }
